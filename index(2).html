@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aryan Kumar | Portfolio</title>
+<meta name="description" content="Portfolio of Aryan Kumar: bio, skills, education and projects.">
+
+<!--
+  Only one placeholder is left: the LinkedIn link in the footer (search for "EDIT").
+-->
+
+<script>
+  /* Set the theme before the page paints so there is no flash */
+  (function () {
+    var theme = "light";
+    try {
+      var saved = localStorage.getItem("theme");
+      if (saved === "dark" || saved === "light") theme = saved;
+      else if (window.matchMedia("(prefers-color-scheme: dark)").matches) theme = "dark";
+    } catch (e) {}
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f2f6fb;
+    --surface: #ffffff;
+    --ink: #14213d;
+    --muted: #4f5d75;
+    --line: #d5deea;
+    --accent: #2f5bea;
+    --accent-ink: #ffffff;
+    --chip: #e4ecff;
+    --head: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  }
+  [data-theme="dark"] {
+    --bg: #0d1424;
+    --surface: #151e33;
+    --ink: #e8edf8;
+    --muted: #a3b0c9;
+    --line: #26324d;
+    --accent: #86a2ff;
+    --accent-ink: #0d1424;
+    --chip: #1f2c4d;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    transition: background .25s, color .25s;
+  }
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  .wrap { width: min(100% - 2.5rem, 62rem); margin-inline: auto; }
+  section { padding: 5rem 0; scroll-margin-top: 4rem; }
+  h1, h2, h3 { font-family: var(--head); line-height: 1.1; margin: 0; }
+  h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 2rem; }
+  p { margin: 0 0 1rem; max-width: 62ch; }
+
+  /* Navigation */
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; gap: 1.5rem; min-height: 4rem; }
+  .brand { font-family: var(--head); font-weight: 800; font-size: 1.25rem; color: var(--ink); text-decoration: none; margin-right: auto; }
+  .nav a.link { color: var(--ink); text-decoration: none; font-weight: 500; padding: .25rem 0; border-bottom: 2px solid transparent; }
+  .nav a.link:hover { border-color: var(--accent); }
+  .toggle {
+    font: inherit; font-weight: 500; cursor: pointer;
+    color: var(--ink); background: var(--surface);
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: .4rem 1rem;
+    transition: border-color .2s;
+  }
+  .toggle:hover { border-color: var(--accent); }
+
+  /* About */
+  .about { padding-top: 4.5rem; }
+  .about .grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center; }
+  .name {
+    font-size: clamp(3.2rem, 11vw, 7.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: .95;
+    margin-bottom: 1.5rem;
+  }
+  .name span { display: block; }
+  .name span + span { color: var(--accent); }
+  .role { font-family: var(--head); font-size: 1.4rem; font-weight: 500; color: var(--muted); margin-bottom: 1.5rem; }
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.5rem; }
+  .facts h3 { font-size: 1.15rem; margin-bottom: .75rem; }
+  .facts ul { margin: 0; padding-left: 1.2rem; color: var(--muted); }
+  .facts li + li { margin-top: .4rem; }
+  @media (min-width: 52rem) { .about .grid { grid-template-columns: 1.6fr 1fr; } }
+
+  /* Skills */
+  .skill-groups { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .group { border-top: 3px solid var(--accent); padding-top: 1rem; }
+  .group h3 { font-size: 1.2rem; margin-bottom: .9rem; }
+  .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+  .chips li { background: var(--chip); border-radius: 8px; padding: .3rem .75rem; font-weight: 500; font-size: .98rem; }
+
+  /* Education */
+  .edu { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 2rem; }
+  .edu h3 { font-size: 1.5rem; margin-bottom: .35rem; }
+  .edu dl { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.5rem; margin: 1.25rem 0 0; }
+  .edu dt { font-weight: 600; }
+  .edu dd { margin: 0; color: var(--muted); }
+
+  /* Projects */
+  .projects-list { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); }
+  .project { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.5rem; }
+  .project h3 { font-size: 1.3rem; margin-bottom: .6rem; }
+  .project .tech { color: var(--muted); font-size: .95rem; }
+  .project .links { display: flex; gap: 1rem; margin-top: 1rem; font-weight: 600; }
+  .coming { border: 2px dashed var(--line); border-radius: 14px; padding: 2rem; color: var(--muted); }
+  .coming p { margin: 0; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--line); padding: 2.5rem 0; background: var(--surface); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; justify-content: space-between; align-items: flex-start; }
+  footer p { margin: 0 0 .25rem; }
+  footer .copy { color: var(--muted); font-size: .95rem; }
+  footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
+  footer a { font-weight: 600; }
+
+  @media (max-width: 34rem) {
+    .nav .wrap { gap: .9rem; }
+    .brand { font-size: 1.05rem; }
+    .toggle { padding: .35rem .75rem; font-size: .92rem; }
+    section { padding: 3.5rem 0; }
+    .edu dl { grid-template-columns: 1fr; gap: .1rem; }
+    .edu dd { margin-bottom: .6rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. Navigation bar -->
+<header class="nav">
+  <nav class="wrap" aria-label="Main">
+    <a class="brand" href="#top">Aryan Kumar</a>
+    <a class="link" href="#skills">Skills</a>
+    <a class="link" href="#projects">Projects</a>
+    <button class="toggle" id="theme-toggle" type="button" aria-pressed="false">Dark mode</button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- 2. About / Bio -->
+  <section class="about" id="about">
+    <div class="wrap grid">
+      <div>
+        <h1 class="name"><span>Aryan</span><span>Kumar</span></h1>
+        <p class="role">B.Tech CSE (AI/ML) student and beginner web developer</p>
+        <p>Hi, I'm Aryan Kumar, a first-year B.Tech CSE (AI/ML) student at Geeta University, Panipat, where I'm also part of the NIAT upskilling programme. I'm a beginner, and right now I'm learning Python, web development and generative AI.</p>
+        <p>I want to build a career in AI and software. This portfolio is my first complete website, and I'm using it to practise HTML, CSS and JavaScript on something real.</p>
+      </div>
+      <aside>
+        <div class="facts">
+          <h3>Quick facts</h3>
+          <ul>
+            <li>Full name: Aryan Kumar</li>
+            <li>Studying: B.Tech CSE (AI/ML), 1st year</li>
+            <li>Programme: NIAT with Geeta University</li>
+            <li>Learning: Python, web development, generative AI</li>
+            <li>Interests: AI, web development</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 3. Skills -->
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <div class="skill-groups">
+        <div class="group">
+          <h3>Programming languages</h3>
+          <ul class="chips">
+            <li>Python (learning)</li>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript (basics)</li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3>Technical skills</h3>
+          <ul class="chips">
+            <li>Responsive layouts</li>
+            <li>Flexbox and Grid</li>
+            <li>Dark mode with CSS variables</li>
+            <li>Prompting generative AI tools</li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3>Tools and technologies</h3>
+          <ul class="chips">
+            <li>Git</li>
+            <li>GitHub</li>
+            <li>VS Code</li>
+            <li>Browser DevTools</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Education -->
+  <section id="education">
+    <div class="wrap">
+      <h2>Education</h2>
+      <div class="edu">
+        <h3>Geeta University, Panipat</h3>
+        <p>B.Tech in Computer Science and Engineering (AI and Machine Learning)</p>
+        <dl>
+          <dt>Upskilling programme</dt>
+          <dd>NIAT (NxtWave Institute of Advanced Technologies), run in collaboration with Geeta University</dd>
+          <dt>Year / semester</dt>
+          <dd>1st year, Semester 1</dd>
+          <dt>Currently learning</dt>
+          <dd>Python, web development (HTML, CSS, JavaScript), generative AI</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Projects (optional) -->
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+
+      <div class="coming">
+        <p>Projects are coming soon. This portfolio is my first build, and I'll add new work here as I finish it.</p>
+      </div>
+
+      <!-- When you have a real project, replace the block above with this card (copy it for more projects)
+      <div class="projects-list">
+        <article class="project">
+          <h3>Project title</h3>
+          <p>One or two sentences on what it does.</p>
+          <p class="tech">Built with: HTML, CSS, JavaScript</p>
+          <div class="links">
+            <a href="https://github.com/YOUR-USERNAME/YOUR-REPO">GitHub</a>
+            <a href="https://your-live-demo-link">Live demo</a>
+          </div>
+        </article>
+      </div>
+      -->
+    </div>
+  </section>
+
+</main>
+
+<!-- 6. Footer -->
+<footer>
+  <div class="wrap">
+    <div>
+      <p><strong>Aryan Kumar</strong></p>
+      <p class="copy">&copy; <span id="year">2026</span> Aryan Kumar. All rights reserved.</p>
+    </div>
+    <ul>
+      <li><a href="https://github.com/aryankumar10102008-star" target="_blank" rel="noopener">GitHub</a></li>
+      <!-- EDIT: replace YOUR-LINKEDIN-ID with your LinkedIn profile id -->
+      <li><a href="https://www.linkedin.com/in/YOUR-LINKEDIN-ID" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="mailto:aryankumar10102008@gmail.com">aryankumar10102008@gmail.com</a></li>
+      <li><a href="tel:+918219560945">+91 82195 60945</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  var root = document.documentElement;
+  var btn = document.getElementById("theme-toggle");
+
+  function paint() {
+    var dark = root.getAttribute("data-theme") === "dark";
+    btn.textContent = dark ? "Light mode" : "Dark mode";
+    btn.setAttribute("aria-pressed", String(dark));
+  }
+
+  btn.addEventListener("click", function () {
+    var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    paint();
+  });
+
+  paint();
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
